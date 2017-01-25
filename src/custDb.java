@@ -7,14 +7,14 @@
 public class custDb {
 	
 	private String[] custList;
-	private String custLength	= Integer.toString(custList.length);
+	private String custLength;
 	
 	/**
 	 * @ClassName customer
 	 * @Author Matthew Tse 
 	 *
 	 */
-	protected class customer {
+	public class customer {
 		
 		//Declarations and initializations
 		protected String Id		= "";
@@ -91,7 +91,7 @@ public class custDb {
 		
 		for (int itemCnt = 0; itemCnt < Integer.parseInt(custLength); itemCnt++) {
 			
-			System.out.println(custList[itemCnt].concat("\t$");
+			System.out.println(custList[itemCnt].concat("\t$"));
 			
 		}//end for loop
 		

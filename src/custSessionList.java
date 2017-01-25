@@ -273,7 +273,22 @@ public class custSessionList implements Printer{
 		
 	}
 	
-	
+	/*
+	 * @Name: getPricesInCart
+	 * @Function/Purpose: adds up running total for prices in cart
+	 * 
+	 * @Parameters: which item was added 
+	 * 
+	 * @Additional Comments: 
+	 * @Return: float running total
+	 * 
+	 * */
+	public String showCustomers(String custList[]) {
+		
+		String customers	= Integer.toString(custList.length);
+		
+		return customers;
+	}//end method
 
 
 }//end class

@@ -45,8 +45,6 @@ public class inputValidator {
 							
 		}
 
-//		System.out.print("validate, validInput = ");
-//		System.out.println(validInput);
 		return validInput;
 		
 	}//end method
