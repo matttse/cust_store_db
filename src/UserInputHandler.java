@@ -1,6 +1,6 @@
 /**
  * @ClassName UserInputHandler
- * @Author Matthew Tse
+ * @author Matthew Tse
  * @Method confirmInput
  * @Method exit
  * @Method getMatchedItems
@@ -38,7 +38,7 @@ public class UserInputHandler {
 	public String getString(String inputString) {
 		boolean valid = false;
 		int tryCnt = 0;
-		InputValidator validateInput = new InputValidator();
+		inputValidator validateInput = new inputValidator();
 		System.out.println(inputString);
 		
 		
@@ -84,7 +84,7 @@ public class UserInputHandler {
 	public String getNum(String inputString, int typeFlag) {
 		boolean valid = false;
 		int tryCnt = 0;
-		InputValidator validateInput = new InputValidator();
+		inputValidator validateInput = new inputValidator();
 		System.out.println(inputString);		
 		
 		while (valid != true && tryCnt <3) {		

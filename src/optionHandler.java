@@ -5,15 +5,16 @@ import java.util.Arrays;
  */
 
 /**
- * @author mase
+ * @ClassName optionHandler
+ * @author Matthew Tse
  *
  */
 public class optionHandler {
 	
 	
 	/*
-	 * @Name: showMenu
-	 * @Function/Purpose: shows a menu of items
+	 * @Name: showCustDb
+	 * @Function/Purpose: shows customers
 	 * 
 	 * @Parameters: none 
 	 * 
@@ -21,9 +22,9 @@ public class optionHandler {
 	 * @Return: null
 	 * 
 	 * */
-	public void showMenu() {
-		TechStore custStoreDb = new TechStore();
-		myStore.showCatalog();
+	public void showCustDb() {
+		custDb custStoreDb = new custDb();
+		custStoreDb.showCustomers();
 		
 	}//end method
 	

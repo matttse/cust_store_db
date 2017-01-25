@@ -1,7 +1,7 @@
 
 
 /**
- * @Method errorGettor
+ * @ClassName errorGettor
  * @author Matthew Tse
  * @param null
  * @return {vc} hardcoded message + badInput
