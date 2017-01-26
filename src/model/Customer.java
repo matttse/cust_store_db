@@ -6,29 +6,11 @@ package model;
  *
  */
 
-public class Customer extends Person{
-	
-	private String[] custList;
-	private String custLength;
-	protected int age;
+public abstract class Customer extends Person{
+
+	protected String id;
 	protected double income;
 	protected int cScore;
-
-	/**
-	 * @return the age
-	 */
-	protected int getAge() {
-		return age;
-	}
-
-
-	/**
-	 * @param age the age to set
-	 */
-	protected void setAge(int age) {
-		this.age = age;
-	}
-
 
 	/**
 	 * @return the income

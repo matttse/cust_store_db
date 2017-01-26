@@ -9,27 +9,34 @@ package model;
 import java.util.*;
 import java.io.*;
 
+import javax.lang.model.element.Element;
+
 import dhl.UserInputHandler;
 
-public class SessionList {
+public class CustomerList extends Customer {
 	
-	private String cartDetail	= "";
-	protected String itemName	= "";
-	private String itemIdx		= "";
+	protected String customer		= "";
+	protected String custDetails[]	= null;
 		
 	//instantiate the handler
     UserInputHandler process = new UserInputHandler();
+
+    //instantiate the the customer object    
+    ArrayList<String> customerList = new ArrayList<String>();	
     
-	//instantiate the the customer object
-	ArrayList<Customer> customerList = new ArrayList<Customer>();
-	
-	
 	//add item to customer object
 	public boolean addCustomer(String custDetail) {
     	//status check, default is fail
 		boolean stat	= false;		
 		
-		//TODO ADD stat return 1 success 0 fail
+		//add customer info to customer list
+		customerList.add(custDetail);
+		
+		//if the list exists and is bigger than 0
+		if (customerList.size() > 0) {
+			stat = true;
+		}
+		
         return stat;
 		
 	}//end method
@@ -58,15 +65,40 @@ public class SessionList {
 	 * @Return: float running total
 	 * 
 	 * */
-	public String showCustomers() {
-		String custList = "";
-		int mylength = 20;
+	public String showCustomers(ArrayList<String> customerList) {
+		String details = "";
+		String customerIdx = "";
 		for (int custID = 0; custID < customerList.size(); custID++) {
-			custList	+= custID;
+			customerIdx	+= customerList.get(custID);
+			details += customerIdx.split(",");
+			
+			
 		}			
 		
-		return custList;
+		//customer list iterator
+//		for (int cid = 0; cid < customerList.size(); cid++) {
+			//customer detail iterator
+//			customer = customerList.get(cid);
+			
+//			for (int detail = 0; detail < 6; detail++) {
+//			customer.split(",");
+			
+			
+				
+				
+						
+//			}
+
+				
+//		} 
+		
+		return details;
 	}//end method
+	
+	public CustomerList(ArrayList<String> customerList) {
+		super();
+		
+	}
 	
 	/*
 	 * @Name: searchCustDb

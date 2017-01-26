@@ -1,5 +1,5 @@
 package view;
-import model.SessionList;
+import model.CustomerList;
 import dhl.UserInputHandler;
 
 
@@ -12,8 +12,7 @@ import dhl.UserInputHandler;
 public class MainList {
 
 	//Main method
-    public static void main (String [] args)
-    {
+    public static void main (String [] args) {
     	
     	//initialize and declare global vars
     	int completeFlag	= 0;
@@ -25,20 +24,13 @@ public class MainList {
     	String optionSix	= "(6) Display all customers";
     	String optionZero	= "(0) Exit the program";
     	String option		= "";
-    	String name			= "";
-    	String custId		= "";
-    	int nameLength		= 0;
-    	String itemIdxs		= "";
-    	String custDetail	= "";    	
-    	int age				= 0;
-    	double income		= 0;
-    	int cScore			= 0;
+    	
     	
     	//instantiate the handler
         UserInputHandler processInput = new UserInputHandler();
         
         //instantiate the session cart
-        SessionList admList = new SessionList();
+        CustomerList admList = new CustomerList(null);
         
         //Option selector
     	while (completeFlag == 0) {
@@ -63,6 +55,14 @@ public class MainList {
     			System.out.print("Please select a valid option");
     		//Add customer
     		} else if (select == 1) {
+    	    	String custId		= "";
+    			String custDetail	= ""; 
+    	    	String name			= "";
+    	    	int age				= 0;
+    	    	double income		= 0;
+    	    	int cScore			= 0;
+    	    	int nameLength		= 0;
+    			
     	      	//Prompt the user for customer id input 
     	        custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
     	        
@@ -118,10 +118,11 @@ public class MainList {
         	        } else {
         	            
         	            System.out.println("Customer age is ".concat(String.valueOf(age)));
+        	            //update temp input
+        	            custDetail += age + ",";
         	            
         	        }
         	        
-        	        custDetail += age + ",";
         	        
         	       	//Prompt the user for income input 
         	        income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000): ", 1));
@@ -135,10 +136,11 @@ public class MainList {
         	        } else {
         	            
         	            System.out.println("Customer income is ".concat(String.valueOf(income)));
-        	            
+        	            //update temp input
+            	        custDetail += income + ",";
+            	        
         	        }
         	        
-        	        custDetail += income + ",";
         	        
         	       	//Prompt the user for credit score input 
         	        cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 800): ", 1));
@@ -152,13 +154,16 @@ public class MainList {
         	        } else {
         	            
         	            System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));
+        	            //update temp input
+        	            custDetail += cScore;
         	            
         	        }
         	        
-        	        custDetail += cScore;
+        	        
         	        
         	        if (admList.addCustomer(custDetail) == true) {
         	        	System.out.println("Success");
+
         	        } else {
         	        	System.out.println("Could not add customer.");
         	        	
@@ -171,7 +176,7 @@ public class MainList {
     		//Display all customers
     		} else if (select == 6) {
     			    			
-    			if (admList.showCustomers() == null) {
+    			if (admList.showCustomers(null) == null) {
     				
     				System.out.println("You do not have any customers stored.");
     				
