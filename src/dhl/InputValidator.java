@@ -1,13 +1,14 @@
+package dhl;
 
 
 
 /**
- * @ClassName inputValidator
+ * @ClassName InputValidator
  * @Author Matthew Tse
  * 
  *
  */
-public class inputValidator {
+public class InputValidator {
 	
 	//Global var declarations	
 	private String validationErrors = "";
@@ -83,7 +84,7 @@ public class inputValidator {
 		if (badChars != "") {
 			
 			//instantiate getErrors to get bad string if necessary
-			errorGetter getErrors = new errorGetter();
+			ErrorGetter getErrors = new ErrorGetter();
 			
 			validationErrors = getErrors.getErrors(badChars);
 			
@@ -159,5 +160,25 @@ public class inputValidator {
 		return validInput;
 
 	}//end method
+	
+	/**
+	 * @ClassName errorGettor
+	 * @author Matthew Tse
+	 * @param null
+	 * @return {vc} hardcoded message + badInput
+	 *
+	 */
+	public class ErrorGetter {
+		
+		public String getErrors(String badInput) {
+			String partialInput = "You have typed invalid character(s): ";
+
+			partialInput += badInput;
+			return partialInput;
+			
+		}//end method
+		
+	}//end class
+	
 
 }//end class

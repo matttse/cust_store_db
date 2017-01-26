@@ -1,3 +1,6 @@
+package dhl;
+
+
 /**
  * @ClassName UserInputHandler
  * @author Matthew Tse
@@ -38,7 +41,7 @@ public class UserInputHandler {
 	public String getString(String inputString) {
 		boolean valid = false;
 		int tryCnt = 0;
-		inputValidator validateInput = new inputValidator();
+		InputValidator validateInput = new InputValidator();
 		System.out.println(inputString);
 		
 		
@@ -84,7 +87,7 @@ public class UserInputHandler {
 	public String getNum(String inputString, int typeFlag) {
 		boolean valid = false;
 		int tryCnt = 0;
-		inputValidator validateInput = new inputValidator();
+		InputValidator validateInput = new InputValidator();
 		System.out.println(inputString);		
 		
 		while (valid != true && tryCnt <3) {		
