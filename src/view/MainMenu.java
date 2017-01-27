@@ -30,7 +30,7 @@ public class MainMenu {
         UserInputHandler processInput = new UserInputHandler();
         
         //instantiate the session cart
-        CustomerList admList = new CustomerList(null);
+        CustomerList admList = new CustomerList();
         
         //Option selector
     	while (completeFlag == 0) {
@@ -53,6 +53,27 @@ public class MainMenu {
     		if (select > 6 || select < 0) {
     			
     			System.out.print("Please select a valid option");
+    		//Remove customer
+    		} else if (select == 2) {
+    			int custId;
+    			
+    			custId = Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
+    			
+    			while (custId == 0) {
+    				System.out.println("You did not enter anything. Please Try again.");
+        			custId		= Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
+        		
+    			}
+    			
+	            //remove customer
+    	        if (admList.removeCustomer(custId) == true) {
+    	        	System.out.println("Success");
+
+    	        } else {
+    	        	System.out.println("Could not remove customer.");
+    	        	
+    	        }
+    			
     		//Add customer
     		} else if (select == 1) {
     	    	String custId		= "";
@@ -77,7 +98,7 @@ public class MainMenu {
     	        }//end while custID length check
     	        //append result
     	        custDetail += custId + ",";
-    	        	
+    	            	        	
 	            //Prompt the user for first name input
 	            while (Fname.length() == 0){
 
@@ -170,15 +191,9 @@ public class MainMenu {
     		//Display all customers
     		} else if (select == 6) {
     			    			
-    			if (admList.showCustomers() == false) {
-    				
-    				System.out.println("You do not have any customers stored.");
-    				
-    			} else {
-        	        //show customer list
-    				//TODO add customer array
-//    				admList.showCustomers(custDetail.split(","));
+    			if (admList.getCustomerListSize() == true) {    				
     				admList.showCustomers();
+    				
     			}
     			
     			

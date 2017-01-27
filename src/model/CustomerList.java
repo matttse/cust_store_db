@@ -1,12 +1,13 @@
 package model;
 
 /**
- * @ClassName custSessionList
+ * @ClassName CustomerList
  * @Author Matthew Tse
  *
  */
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.io.*;
 
 import javax.lang.model.element.Element;
@@ -20,9 +21,9 @@ public class CustomerList {
 	// instantiate the handler
 	UserInputHandler process = new UserInputHandler();
 
-	// instantiate the the customer list object
-	ArrayList<Customer> customerList = new ArrayList<Customer>();
-
+	// instantiate the the customer list object	
+	TreeMap<Integer, Customer> mappedCustomers = new TreeMap<Integer, Customer>();
+	
 	/*
 	 * @Name: addCustomer
 	 * 
@@ -50,11 +51,11 @@ public class CustomerList {
 		customer.income = Double.parseDouble(temp[4]);
 		customer.cScore = Integer.parseInt(temp[5]);
 
-		// add customer info to customer list
-		customerList.add(customer);
+		//add key value pair to customer map for searching
+		mappedCustomers.put(Integer.parseInt(temp[0]), customer);
 
 		// if the list exists and is bigger than 0
-		if (customerList.size() > 0) {
+		if (mappedCustomers.size() > 0) {
 			stat = true;
 		}
 
@@ -62,11 +63,32 @@ public class CustomerList {
 
 	}// end method
 
-	/**
+	/*
+	 * @Name: removeCustomer
+	 * 
+	 * @Function/Purpose: remove customer from list
+	 * 
+	 * @Parameters: {i4} custID
+	 * 
+	 * @Additional Comments:
+	 * 
+	 * @Return: boolean status
 	 * 
 	 */
-	public void removeCustomer() {
-		// TODO Auto-generated method stub
+	public boolean removeCustomer(int custID) {
+		//initialize status
+		boolean stat = false;
+		//remove customer
+		try {
+			mappedCustomers.remove(custID);
+			stat = true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			
+		}
+		
+		return stat;
+		
 	}
 
 	/**
@@ -99,31 +121,58 @@ public class CustomerList {
 	 * 
 	 * @Parameters: null
 	 * 
-	 * @Additional Comments:
-	 * 
+	 * @Additional Comments:source
+	 * 		http://beginnersbook.com/2014/07/treemap-iterator-example-java/
 	 * @Return: boolean status
 	 * 
 	 */
-	public Boolean showCustomers() {
+	public void showCustomers() {
 
-		boolean stat = false;
-
-		if (customerList.size() > 0) {
-			for (int custID = 0; custID < customerList.size(); custID++) {
-
-				System.out.println(customerList.get(custID).getFName() + " " + customerList.get(custID).getLName());
-
-			}
-
-			stat = true;
+		Set<Entry<Integer, Customer>> set = mappedCustomers.entrySet();
+		
+		Iterator<Entry<Integer, Customer>> idx = set.iterator();
+		
+		while(idx.hasNext()) {
+			Map.Entry custId = (Map.Entry)idx.next();
+			Customer customer = (Customer) custId.getValue();
+			System.out.print("\n");
+			System.out.println("Customer id: " + customer.getId());
+			System.out.println("First name: " + customer.getFName());
+			System.out.println("Last name: " + customer.getLName());
+			System.out.println("Age: " + Integer.toString(customer.getAge()));
+			System.out.println("Income: " + Double.toString(customer.getIncome()));
+			System.out.println("Credit score: " + Integer.toString(customer.getcScore()));
 		}
 
-		return stat;
 	}// end method
+	
+	/*
+	 * @Name: getCustomerListSize
+	 * 
+	 * @Function/Purpose: determine if list has been populated
+	 * 
+	 * @Parameters: null
+	 * 
+	 * @Additional Comments:
+	 * 
+	 * @Return: boolean success/fail
+	 * 
+	 */
+	public Boolean getCustomerListSize() {
+		boolean stat = false;
+		if (mappedCustomers.size() > 0) {
+			stat = true;
+		} else {
+			System.out.println("You have not added any customers yet.");
+			
+		}
+		return stat;
 
-	public CustomerList(ArrayList<Customer> customerList) {
+	}//end getCustomerListSize method
+	
+	public CustomerList() {
 		super();
-
+		
 	}
 
 	/*
@@ -131,12 +180,37 @@ public class CustomerList {
 	 * 
 	 * @Function/Purpose: find customer based on ID
 	 * 
-	 * @Parameters: which item was added
+	 * @Parameters: {i4} custID
 	 * 
-	 * @Additional Comments:
+	 * @Additional Comments:internal use ONLY
 	 * 
-	 * @Return: float running total
+	 * @Return: object Customer
 	 * 
 	 */
+	private Customer searchCustDb(int custID) {
+		// instantiate the the customer object
+		Customer customer = new Customer();
+		
+		if (mappedCustomers.isEmpty() != true) {
+			try {
+				Customer custDetail = mappedCustomers.get(custID);
+				
+				customer.setId(custDetail.id);
+				customer.setFName(custDetail.FName);
+				customer.setLName(custDetail.LName);
+				customer.setAge(custDetail.Age);
+				customer.setIncome(custDetail.income);
+				customer.setcScore(custDetail.cScore);
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				customer = null;
+			}//end try catch
+			
+		}//end if check against empty list
+		
+		return customer;
+		
+	}//end searchCustDb method
 
-}// end class
+}// end CustomerList class

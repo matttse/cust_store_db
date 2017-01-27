@@ -56,5 +56,7 @@ public class Customer extends Person {
 	protected void setcScore(int cScore) {
 		this.cScore = cScore;
 	}
+	
+	
 
 }// end class
