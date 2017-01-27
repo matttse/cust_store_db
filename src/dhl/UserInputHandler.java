@@ -12,7 +12,6 @@ package dhl;
  *
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInputHandler {

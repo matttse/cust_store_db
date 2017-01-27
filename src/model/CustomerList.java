@@ -8,10 +8,6 @@ package model;
 
 import java.util.*;
 import java.util.Map.Entry;
-import java.io.*;
-
-import javax.lang.model.element.Element;
-
 import dhl.UserInputHandler;
 
 public class CustomerList {
@@ -91,26 +87,54 @@ public class CustomerList {
 		
 	}
 
-	/**
-	 * @param custID
+	/*
+	 * @Name: updateCustomerInfo
+	 * 
+	 * @Function/Purpose: update info for customer based on user choice
+	 * 
+	 * @Parameters:
+	 * 		{i4} custID
+	 * 		{i4} optionFlag
+	 * 
+	 * 
+	 * @Additional Comments:source
+	 * 		http://stackoverflow.com/questions/4088271/how-can-i-update-values-in-a-map
+	 * @Return: boolean status
+	 * 
 	 */
-	public void updateAge(int custID) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @param custID
-	 */
-	public void updateIncome(int custID) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @param custID
-	 */
-	public void updateCScore(int custID) {
+	public boolean updateCustomerInfo(int custID, int optionFlag, String newVal) {
+		boolean stat = false;
+		try {
+			Customer customer = mappedCustomers.get(custID);
+			switch (optionFlag) {
+			//Age
+			case 3:
+				customer.setAge(Integer.parseInt(newVal));			
+				
+				stat = true;
+				break;
+			//Income
+			case 4:
+				customer.setIncome(Double.parseDouble(newVal));			
+				
+				stat = true;
+				break;
+			//Credit Score
+			case 5:
+				customer.setcScore(Integer.parseInt(newVal));			
+				
+				stat = true;
+				break;
+			default:
+				stat = false;
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			
+		}
+		
+		return stat;
 
 	}
 
@@ -121,9 +145,10 @@ public class CustomerList {
 	 * 
 	 * @Parameters: null
 	 * 
-	 * @Additional Comments:source
+	 * @Additional Comments:sources
 	 * 		http://beginnersbook.com/2014/07/treemap-iterator-example-java/
-	 * @Return: boolean status
+	 * 		http://stackoverflow.com/questions/8689725/map-entry-how-to-use-it
+	 * @Return: null
 	 * 
 	 */
 	public void showCustomers() {
@@ -133,7 +158,7 @@ public class CustomerList {
 		Iterator<Entry<Integer, Customer>> idx = set.iterator();
 		
 		while(idx.hasNext()) {
-			Map.Entry custId = (Map.Entry)idx.next();
+			Map.Entry<Integer, Customer> custId = (Map.Entry<Integer, Customer>)idx.next();
 			Customer customer = (Customer) custId.getValue();
 			System.out.print("\n");
 			System.out.println("Customer id: " + customer.getId());

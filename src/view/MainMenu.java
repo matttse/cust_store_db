@@ -1,8 +1,7 @@
 package view;
+
 import model.CustomerList;
 import dhl.UserInputHandler;
-
-
 
 /**
  * @ClassName MainList
@@ -11,222 +10,305 @@ import dhl.UserInputHandler;
  */
 public class MainMenu {
 
-	//Main method
-    public static void main (String [] args) {
-    	
-    	//initialize and declare global vars
-    	int completeFlag	= 0;
-    	String optionOne	= "(1) Add a customer";
-    	String optionTwo	= "(2) Remove a customer";
-    	String optionThree	= "(3) Update age";
-    	String optionFour	= "(4) Update income";
-    	String optionFive	= "(5) Update credit score";
-    	String optionSix	= "(6) Display all customers";
-    	String optionZero	= "(0) Exit the program";
-    	String option		= "";
-    	
-    	
-    	//instantiate the handler
-        UserInputHandler processInput = new UserInputHandler();
-        
-        //instantiate the session cart
-        CustomerList admList = new CustomerList();
-        
-        //Option selector
-    	while (completeFlag == 0) {
-    		
-    		System.out.println("Please select an option.");
-    		
-    		option = processInput.getNum(
-    					(optionOne.concat("\t")
-    						.concat(optionTwo).concat("\n")
-    						.concat(optionThree).concat("\t")
-    						.concat(optionFour).concat("\n")
-    						.concat(optionFive).concat("\t")
-    						.concat(optionSix).concat("\n")
-    						.concat(optionZero).concat("\t"))
-    						, 0);
-    		
-    		int select = Integer.parseInt(option);
-    		
-    		//Valid options
-    		if (select > 6 || select < 0) {
-    			
-    			System.out.print("Please select a valid option");
-    		//Remove customer
-    		} else if (select == 2) {
-    			int custId;
-    			
-    			custId = Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
-    			
-    			while (custId == 0) {
-    				System.out.println("You did not enter anything. Please Try again.");
-        			custId		= Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
-        		
-    			}
-    			
-	            //remove customer
-    	        if (admList.removeCustomer(custId) == true) {
-    	        	System.out.println("Success");
+	// Main method
+	public static void main(String[] args) {
 
-    	        } else {
-    	        	System.out.println("Could not remove customer.");
-    	        	
-    	        }
-    			
-    		//Add customer
-    		} else if (select == 1) {
-    	    	String custId		= "";
-    			String custDetail	= ""; 
-    	    	String Lname		= "";
-    	    	String Fname		= "";
-    	    	int age				= 0;
-    	    	double income		= 0;
-    	    	int cScore			= 0;
-    	    	int fNameLength		= 0;
-    	    	int lNameLength		= 0;
-    			
-    	      	//Prompt the user for customer id input 
-    	        custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
-    	        
-    	        //check against blank entries
-    	        while (custId.length() == 0) {
-    	        	
-    	        	System.out.println("You did not enter anything. Please Try again.");
-    	        	custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
-    	        	
-    	        }//end while custID length check
-    	        //append result
-    	        custDetail += custId + ",";
-    	            	        	
-	            //Prompt the user for first name input
-	            while (Fname.length() == 0){
+		// initialize and declare global vars
+		int completeFlag = 0;
+		String optionOne = "(1) Add a customer";
+		String optionTwo = "(2) Remove a customer";
+		String optionThree = "(3) Update age";
+		String optionFour = "(4) Update income";
+		String optionFive = "(5) Update credit score";
+		String optionSix = "(6) Display all customers";
+		String optionSeven = "(7) Exit the program";
+		String option = "";
 
-	            	Fname += processInput.getString("Enter first name (i.e. Matthew): ");
-	    	        
-	    	        if (fNameLength == Fname.length()) {
-	    	        	
-	    	        	System.out.println("You did not enter anything. Please Try again.");
-	    	        	
-	    	        }
-	    	        
-	            }//end while first name length check
-	            //append result        
-	            custDetail += Fname + ",";
+		// instantiate the handler
+		UserInputHandler processInput = new UserInputHandler();
 
-	            //Prompt the user for last name input
-	            while (Lname.length() == 0){
+		// instantiate the session cart
+		CustomerList admList = new CustomerList();
 
-	            	Lname += processInput.getString("Enter last name (i.e. Tse): ");
-	    	        
-	    	        if (lNameLength == Lname.length()) {
-	    	        	
-	    	        	System.out.println("You did not enter anything. Please Try again.");
-	    	        	
-	    	        }
-	    	        
-	            }//end while last name length check
-	            //append result
-	            custDetail += Lname + ",";
-	            //display input
-	            System.out.println(Fname + " " + Lname);
-	            
-    	       	//Prompt the user for age input 
-    	        age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30): ", 1));
-    	        
-    	        //check against blank entries
-    	        while (age <= 0) {
-    	        	
-    	        	System.out.println("You did not enter anything. Please Try again.");
-    	        	age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30):  ", 1));
-    	        	
-    	        } //end while age check
+		// Option selector
+		while (completeFlag == 0) {
 
-	            //append result
-	            custDetail += age + ",";
-    	        //display result    
-	            System.out.println("Customer age is ".concat(String.valueOf(age)));   	            
-    	      
-    	       	//Prompt the user for income input 
-    	        income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000): ", 1));
-    	        
-    	        //check against blank entries
-    	        while (income == 0) {
-    	        	
-    	        	System.out.println("You did not enter anything. Please Try again.");
-    	        	income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000):  ", 1));
-    	        	
-    	        }//end while income check 
+			System.out.println("Please select an option.");
 
-	            //update temp input
-    	        custDetail += income + ",";
-    	        //display result
-	            System.out.println("Customer income is ".concat(String.valueOf(income)));    
+			option = processInput.getNum((optionOne.concat("\t").concat(optionTwo).concat("\n").concat(optionThree)
+					.concat("\t").concat(optionFour).concat("\n").concat(optionFive).concat("\t").concat(optionSix)
+					.concat("\n").concat(optionSeven).concat("\t")), 0);
 
-    	       	//Prompt the user for credit score input 
-    	        cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 800): ", 1));
-    	        
-    	        //check against blank entries
-    	        while (cScore == 0) {
-    	        	
-    	        	System.out.println("You did not enter anything. Please Try again.");
-    	        	cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 750):  ", 1));
-    	        	
-    	        }//end credit score check  
-    	        
-	            //update temp input
-	            custDetail += cScore;
-    	        //display result
-	            System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));   
+			int select = Integer.parseInt(option);
 
-	            //add customer
-    	        if (admList.addCustomer(custDetail) == true) {
-    	        	System.out.println("Success");
+			// Valid options
+			if (select > 6 || select < 0) {
 
-    	        } else {
-    	        	System.out.println("Could not add customer.");
-    	        	
-    	        }
-    	     
-    		//Display all customers
-    		} else if (select == 6) {
-    			    			
-    			if (admList.getCustomerListSize() == true) {    				
-    				admList.showCustomers();
-    				
-    			}
-    			
-    			
-    			
-    			//exit menu flag
-//    			completeFlag = 1;
-    		
-    		//Process options
-    		} else {
-    			
-    	        if (select == 0) {
-    	        	
-    	        	System.out.println("Thank you and goodbye");
-    	        	exit(0);
-    	        	
-		
-    			}//end if processing options
-    		
-    		}//end if valid menu options
-    		
-    	}//end Option menu
-    	
-    	System.out.println("Thank you, Goodbye.");
-    	exit(0);
-       
-        
-    }//end main method
-        
-    //standard system exit.
+				System.out.print("Please select a valid option");
+				// Update age
+			} else if (select == 3) {
+				int custId;
+				int age;
+
+				// prompt user for customer id
+				custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+
+				while (custId == 0) {
+					System.out.println("You did not enter anything. Please Try again.");
+					custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+
+				} // end while
+
+				// Prompt the user for age input
+				age = Integer.parseInt(processInput.getNum("Enter new age (i.e. 30): ", 1));
+
+				// check against blank entries
+				while (age <= 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					age = Integer.parseInt(processInput.getNum("Enter new age (i.e. 30):  ", 1));
+
+				} // end while age check
+
+				// update age
+				if (admList.updateCustomerInfo(custId, select, Integer.toString(age)) == true) {
+					System.out.println("Success");
+
+				} else {
+					System.out.println("Could not update age.");
+
+				}
+
+				// Update income
+			} else if (select == 4) {
+				int custId;
+				Double income;
+
+				// prompt user for customer id
+				custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+
+				while (custId == 0) {
+					System.out.println("You did not enter anything. Please Try again.");
+					custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+
+				} // end while
+
+				// Prompt the user for income input
+				income = Double.parseDouble(processInput.getNum("Enter new income (i.e. 30000): ", 2));
+
+				// check against blank entries
+				while (income <= 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					income = Double.parseDouble(processInput.getNum("Enter new income (i.e. 30000): ", 2));
+
+				} // end while age check
+
+				// update income
+				if (admList.updateCustomerInfo(custId, select, Double.toString(income)) == true) {
+					System.out.println("Success");
+
+				} else {
+					System.out.println("Could not update income.");
+
+				}
+				// Update Credit Score
+			} else if (select == 5) {
+				int custId;
+				int cScore;
+
+				// prompt user for customer id
+				custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+
+				while (custId == 0) {
+					System.out.println("You did not enter anything. Please Try again.");
+					custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+
+				} // end while
+
+				// Prompt the user for cScore input
+				cScore = Integer.parseInt(processInput.getNum("Enter new Credit Score (i.e. 800): ", 1));
+
+				// check against blank entries
+				while (cScore <= 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					cScore = Integer.parseInt(processInput.getNum("Enter new cScore (i.e. 750):  ", 1));
+
+				} // end while cScore check
+
+				// update cScore
+				if (admList.updateCustomerInfo(custId, select, Integer.toString(cScore)) == true) {
+					System.out.println("Success");
+
+				} else {
+					System.out.println("Could not update Credit Score.");
+
+				}
+
+				// Remove customer
+			} else if (select == 2) {
+				int custId;
+				// prompt user for customer id
+				custId = Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
+
+				while (custId == 0) {
+					System.out.println("You did not enter anything. Please Try again.");
+					custId = Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
+
+				} // end while
+
+				// remove customer
+				if (admList.removeCustomer(custId) == true) {
+					System.out.println("Success");
+
+				} else {
+					System.out.println("Could not remove customer.");
+
+				}
+
+				// Add customer
+			} else if (select == 1) {
+				String custId = "";
+				String custDetail = "";
+				String Lname = "";
+				String Fname = "";
+				int age = 0;
+				double income = 0;
+				int cScore = 0;
+				int fNameLength = 0;
+				int lNameLength = 0;
+
+				// Prompt the user for customer id input
+				custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
+
+				// check against blank entries
+				while (custId.length() == 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
+
+				} // end while custID length check
+					// append result
+				custDetail += custId + ",";
+
+				// Prompt the user for first name input
+				while (Fname.length() == 0) {
+
+					Fname += processInput.getString("Enter first name (i.e. Matthew): ");
+
+					if (fNameLength == Fname.length()) {
+
+						System.out.println("You did not enter anything. Please Try again.");
+
+					}
+
+				} // end while first name length check
+					// append result
+				custDetail += Fname + ",";
+
+				// Prompt the user for last name input
+				while (Lname.length() == 0) {
+
+					Lname += processInput.getString("Enter last name (i.e. Tse): ");
+
+					if (lNameLength == Lname.length()) {
+
+						System.out.println("You did not enter anything. Please Try again.");
+
+					}
+
+				} // end while last name length check
+					// append result
+				custDetail += Lname + ",";
+				// display input
+				System.out.println(Fname + " " + Lname);
+
+				// Prompt the user for age input
+				age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30): ", 1));
+
+				// check against blank entries
+				while (age <= 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30):  ", 1));
+
+				} // end while age check
+
+				// append result
+				custDetail += age + ",";
+				// display result
+				System.out.println("Customer age is ".concat(String.valueOf(age)));
+
+				// Prompt the user for income input
+				income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000): ", 1));
+
+				// check against blank entries
+				while (income == 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000):  ", 1));
+
+				} // end while income check
+
+				// update temp input
+				custDetail += income + ",";
+				// display result
+				System.out.println("Customer income is ".concat(String.valueOf(income)));
+
+				// Prompt the user for credit score input
+				cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 800): ", 1));
+
+				// check against blank entries
+				while (cScore == 0) {
+
+					System.out.println("You did not enter anything. Please Try again.");
+					cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 750):  ", 1));
+
+				} // end credit score check
+
+				// update temp input
+				custDetail += cScore;
+				// display result
+				System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));
+
+				// add customer
+				if (admList.addCustomer(custDetail) == true) {
+					System.out.println("Success");
+
+				} else {
+					System.out.println("Could not add customer.");
+
+				}
+
+				// Display all customers
+			} else if (select == 6) {
+
+				if (admList.getCustomerListSize() == true) {
+					admList.showCustomers();
+
+				}
+
+				// Process options
+			} else {
+				completeFlag += 1;
+				if (select == 7) {
+
+					System.out.println("Thank you and goodbye");
+					exit(0);
+
+				} // end if processing options
+
+			} // end if valid menu options
+
+		} // end Option menu
+
+	}// end main method
+
+	// standard system exit.
 	public static void exit(int status) {
 		System.exit(status);
 		return;
 	}
 
 }
-
