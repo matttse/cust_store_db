@@ -6,6 +6,8 @@ import dhl.UserInputHandler;
 /**
  * @ClassName MainList
  * @author Matthew Tse
+ * @Method main
+ * @Method exit
  *
  */
 public class MainMenu {

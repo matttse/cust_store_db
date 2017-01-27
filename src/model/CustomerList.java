@@ -3,6 +3,12 @@ package model;
 /**
  * @ClassName CustomerList
  * @Author Matthew Tse
+ * @SuperClass CustomerList
+ * @Method addCustomer
+ * @Method getCustomerListSize
+ * @Method showCustomers
+ * @Method updateCustomerInfo
+ * @Method searchCustDb
  *
  */
 
@@ -127,6 +133,7 @@ public class CustomerList {
 				break;
 			default:
 				stat = false;
+				break;
 			}
 			
 		} catch (Exception e) {

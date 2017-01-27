@@ -3,7 +3,10 @@ package dhl;
 /**
  * @ClassName InputValidator
  * @Author Matthew Tse
- * 
+ * @SubClass ErrorGettor
+ * @Method validate
+ * @Method validateNum
+ * @Method validateString
  *
  */
 public class InputValidator {
@@ -48,7 +51,18 @@ public class InputValidator {
 		return validInput;
 
 	}// end method
-
+	
+	/*
+	 * @Name: validateString
+	 * 
+	 * @Function/Purpose: Validates string input
+	 * 
+	 * @Parameters: {vc} String input
+	 * 
+	 * @Additionl Comments: called from validate method
+	 * 
+	 * @Return true/false based on valid 
+	 */
 	public boolean validateString(String userInput) {
 		boolean validInput = false;
 		String badChars = "";
@@ -101,7 +115,19 @@ public class InputValidator {
 		return validInput;
 
 	}// end method
-
+	
+	/*
+	 * @Name: validateNum
+	 * 
+	 * @Function/Purpose: Validates number input
+	 * 
+	 * @Parameters:
+	 * 		{vc} String input
+	 * 		{i4} flag
+	 * @Additionl Comments: called from validate method
+	 * 
+	 * @Return true/false based on valid 
+	 */
 	public boolean validateNum(String userInput, int flag) {
 		boolean validInput = false;
 

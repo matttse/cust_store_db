@@ -31,11 +31,11 @@ public class UserInputHandler {
 	 * 
 	 * @Function/Purpose: gets a string value
 	 * 
-	 * @Parameters: string of number, flex the type flag
+	 * @Parameters: {vc} string of number
 	 * 
 	 * @Additional Comments:
 	 * 
-	 * @Return: boolean
+	 * @Return: {vc} output text
 	 * 
 	 */
 	public String getString(String inputString) {
