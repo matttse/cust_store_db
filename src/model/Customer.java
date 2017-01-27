@@ -6,7 +6,7 @@ package model;
  *
  */
 
-public abstract class Customer extends Person{
+public class Customer extends Person{
 
 	protected String id;
 	protected double income;

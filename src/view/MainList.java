@@ -57,126 +57,122 @@ public class MainList {
     		} else if (select == 1) {
     	    	String custId		= "";
     			String custDetail	= ""; 
-    	    	String name			= "";
+    	    	String Lname		= "";
+    	    	String Fname		= "";
     	    	int age				= 0;
     	    	double income		= 0;
     	    	int cScore			= 0;
-    	    	int nameLength		= 0;
+    	    	int fNameLength		= 0;
+    	    	int lNameLength		= 0;
     			
     	      	//Prompt the user for customer id input 
     	        custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
     	        
     	        //check against blank entries
-    	        if (custId.length() == 0) {
+    	        while (custId.length() == 0) {
     	        	
     	        	System.out.println("You did not enter anything. Please Try again.");
     	        	custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
     	        	
-    	        } else {
+    	        }
+    	        custDetail += custId + ",";
     	        	
-    	            //Prompt the user for first name input
-    	            while (nameLength == name.length()){
+	            //Prompt the user for first name input
+	            while (Fname.length() == 0){
 
-    	    	        name += processInput.getString("Enter first name (i.e. Matthew): ");
-    	    	        
-    	    	        if (nameLength == name.length()) {
-    	    	        	
-    	    	        	System.out.println("You did not enter anything. Please Try again.");
-    	    	        	
-    	    	        }
-    	    	        
-    	            }
-    	                    
-    	            name += " ";
-    	            nameLength = name.length();
+	            	Fname += processInput.getString("Enter first name (i.e. Matthew): ");
+	    	        
+	    	        if (fNameLength == Fname.length()) {
+	    	        	
+	    	        	System.out.println("You did not enter anything. Please Try again.");
+	    	        	
+	    	        }
+	    	        
+	            }
+	                    
+	            custDetail += Fname + ",";
 
-    	            //Prompt the user for last name input
-    	            while (nameLength == name.length()){
+	            //Prompt the user for last name input
+	            while (Lname.length() == 0){
 
-    	    	        name += processInput.getString("Enter last name (i.e. Tse): ");
-    	    	        
-    	    	        if (nameLength == name.length()) {
-    	    	        	
-    	    	        	System.out.println("You did not enter anything. Please Try again.");
-    	    	        	
-    	    	        }
-    	    	        
-    	            }
+	            	Lname += processInput.getString("Enter last name (i.e. Tse): ");
+	    	        
+	    	        if (lNameLength == Lname.length()) {
+	    	        	
+	    	        	System.out.println("You did not enter anything. Please Try again.");
+	    	        	
+	    	        }
+	    	        
+	            }
+	            
+	            custDetail += Lname + ",";
+	            System.out.println(Fname + " " + Lname);
+	            
+    	       	//Prompt the user for age input 
+    	        age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30): ", 1));
+    	        
+    	        //check against blank entries
+    	        while (age <= 0) {
+    	        	
+    	        	System.out.println("You did not enter anything. Please Try again.");
+    	        	age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30):  ", 1));
+    	        	
+    	        } 
     	            
-    	            custDetail += name + ",";
-    	            System.out.println(name);
+	            System.out.println("Customer age is ".concat(String.valueOf(age)));
+	            //update temp input
+	            custDetail += age + ",";
     	            
-        	       	//Prompt the user for age input 
-        	        age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30): ", 1));
+    	      
+    	        
+    	       	//Prompt the user for income input 
+    	        income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000): ", 1));
+    	        
+    	        //check against blank entries
+    	        while (income == 0) {
+    	        	
+    	        	System.out.println("You did not enter anything. Please Try again.");
+    	        	income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000):  ", 1));
+    	        	
+    	        } 
+    	        
+	            System.out.println("Customer income is ".concat(String.valueOf(income)));
+	            //update temp input
+    	        custDetail += income + ",";
         	        
-        	        //check against blank entries
-        	        if (age == 0) {
-        	        	
-        	        	System.out.println("You did not enter anything. Please Try again.");
-        	        	age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30):  ", 1));
-        	        	
-        	        } else {
-        	            
-        	            System.out.println("Customer age is ".concat(String.valueOf(age)));
-        	            //update temp input
-        	            custDetail += age + ",";
-        	            
-        	        }
-        	        
-        	        
-        	       	//Prompt the user for income input 
-        	        income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000): ", 1));
-        	        
-        	        //check against blank entries
-        	        if (age == 0) {
-        	        	
-        	        	System.out.println("You did not enter anything. Please Try again.");
-        	        	income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000):  ", 1));
-        	        	
-        	        } else {
-        	            
-        	            System.out.println("Customer income is ".concat(String.valueOf(income)));
-        	            //update temp input
-            	        custDetail += income + ",";
-            	        
-        	        }
-        	        
-        	        
-        	       	//Prompt the user for credit score input 
-        	        cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 800): ", 1));
-        	        
-        	        //check against blank entries
-        	        if (cScore == 0) {
-        	        	
-        	        	System.out.println("You did not enter anything. Please Try again.");
-        	        	cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 750):  ", 1));
-        	        	
-        	        } else {
-        	            
-        	            System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));
-        	            //update temp input
-        	            custDetail += cScore;
-        	            
-        	        }
-        	        
-        	        
-        	        
-        	        if (admList.addCustomer(custDetail) == true) {
-        	        	System.out.println("Success");
 
-        	        } else {
-        	        	System.out.println("Could not add customer.");
-        	        	
-        	        }
-        	        
-        	        
-        	                	        
+    	        
+    	        
+    	       	//Prompt the user for credit score input 
+    	        cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 800): ", 1));
+    	        
+    	        //check against blank entries
+    	        while (cScore == 0) {
+    	        	
+    	        	System.out.println("You did not enter anything. Please Try again.");
+    	        	cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 750):  ", 1));
+    	        	
+    	        }  
+	            System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));
+	            //update temp input
+	            custDetail += cScore;
+    	            
+
+    	        
+    	        
+    	        
+    	        if (admList.addCustomer(custDetail) == true) {
+    	        	System.out.println("Success");
+
+    	        } else {
+    	        	System.out.println("Could not add customer.");
+    	        	
     	        }
     	     
     		//Display all customers
     		} else if (select == 6) {
     			    			
-    			if (admList.showCustomers(null) == null) {
+    			if (admList.showCustomers() == false) {
     				
     				System.out.println("You do not have any customers stored.");
     				
@@ -184,7 +180,7 @@ public class MainList {
         	        //show customer list
     				//TODO add customer array
 //    				admList.showCustomers(custDetail.split(","));
-    				
+    				admList.showCustomers();
     			}
     			
     			

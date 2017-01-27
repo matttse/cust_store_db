@@ -13,24 +13,34 @@ import javax.lang.model.element.Element;
 
 import dhl.UserInputHandler;
 
-public class CustomerList extends Customer {
+public class CustomerList {
 	
-	protected String customer		= "";
 	protected String custDetails[]	= null;
 		
 	//instantiate the handler
     UserInputHandler process = new UserInputHandler();
 
-    //instantiate the the customer object    
-    ArrayList<String> customerList = new ArrayList<String>();	
+    //instantiate the the customer list object    
+    ArrayList<String> customerList = new ArrayList<String>();
     
 	//add item to customer object
 	public boolean addCustomer(String custDetail) {
     	//status check, default is fail
-		boolean stat	= false;		
+		boolean stat	= false;
+		//unpack customer info
+		String temp[] = custDetail.split(",");
+	    //instantiate the the customer object    
+	    Customer customer = new Customer();
+		//set customer info to customer object
+		customer.id		= temp[0];
+		customer.FName	= temp[1];
+		customer.LName	= temp[2];
+		customer.Age	= Integer.parseInt(temp[3]);
+		customer.income	= Double.parseDouble(temp[4]);
+		customer.cScore	= Integer.parseInt(temp[5]);
 		
 		//add customer info to customer list
-		customerList.add(custDetail);
+		customerList.add(customer.toString());
 		
 		//if the list exists and is bigger than 0
 		if (customerList.size() > 0) {
@@ -62,37 +72,24 @@ public class CustomerList extends Customer {
 	 * @Parameters: 
 	 * 
 	 * @Additional Comments: 
-	 * @Return: float running total
+	 * @Return: status
 	 * 
 	 * */
-	public String showCustomers(ArrayList<String> customerList) {
-		String details = "";
-		String customerIdx = "";
-		for (int custID = 0; custID < customerList.size(); custID++) {
-			customerIdx	+= customerList.get(custID);
-			details += customerIdx.split(",");
-			
-			
-		}			
-		
-		//customer list iterator
-//		for (int cid = 0; cid < customerList.size(); cid++) {
-			//customer detail iterator
-//			customer = customerList.get(cid);
-			
-//			for (int detail = 0; detail < 6; detail++) {
-//			customer.split(",");
-			
-			
-				
-				
-						
-//			}
+	public Boolean showCustomers() {
 
-				
-//		} 
+		boolean stat		= false;
+	    //instantiate the the customer object    
+	    Customer customer = new Customer();
+		if (customerList.size() > 0) {
+			for (int custID = 0; custID < customerList.size(); custID++) {
+				System.out.println(customerList.get(custID).toString());
+				customerList.toString();
+			}	
+			
+			stat = true;
+		}
 		
-		return details;
+		return stat;
 	}//end method
 	
 	public CustomerList(ArrayList<String> customerList) {
