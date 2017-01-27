@@ -6,12 +6,12 @@ package model;
  *
  */
 
-public class Customer extends Person{
+public class Customer extends Person {
 
 	protected String id;
 	protected double income;
 	protected int cScore;
-	
+
 	/**
 	 * @return the id
 	 */
@@ -19,14 +19,14 @@ public class Customer extends Person{
 		return id;
 	}
 
-
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	protected void setId(String id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * @return the income
 	 */
@@ -34,14 +34,13 @@ public class Customer extends Person{
 		return income;
 	}
 
-
 	/**
-	 * @param income the income to set
+	 * @param income
+	 *            the income to set
 	 */
 	protected void setIncome(double income) {
 		this.income = income;
 	}
-
 
 	/**
 	 * @return the cScore
@@ -50,12 +49,12 @@ public class Customer extends Person{
 		return cScore;
 	}
 
-
 	/**
-	 * @param cScore the cScore to set
+	 * @param cScore
+	 *            the cScore to set
 	 */
 	protected void setcScore(int cScore) {
 		this.cScore = cScore;
 	}
-	
-}//end class
+
+}// end class

@@ -9,7 +9,7 @@ import dhl.UserInputHandler;
  * @author Matthew Tse
  *
  */
-public class MainList {
+public class MainMenu {
 
 	//Main method
     public static void main (String [] args) {
@@ -74,7 +74,8 @@ public class MainList {
     	        	System.out.println("You did not enter anything. Please Try again.");
     	        	custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
     	        	
-    	        }
+    	        }//end while custID length check
+    	        //append result
     	        custDetail += custId + ",";
     	        	
 	            //Prompt the user for first name input
@@ -88,8 +89,8 @@ public class MainList {
 	    	        	
 	    	        }
 	    	        
-	            }
-	                    
+	            }//end while first name length check
+	            //append result        
 	            custDetail += Fname + ",";
 
 	            //Prompt the user for last name input
@@ -103,9 +104,10 @@ public class MainList {
 	    	        	
 	    	        }
 	    	        
-	            }
-	            
+	            }//end while last name length check
+	            //append result
 	            custDetail += Lname + ",";
+	            //display input
 	            System.out.println(Fname + " " + Lname);
 	            
     	       	//Prompt the user for age input 
@@ -117,14 +119,13 @@ public class MainList {
     	        	System.out.println("You did not enter anything. Please Try again.");
     	        	age = Integer.parseInt(processInput.getNum("Enter age (i.e. 30):  ", 1));
     	        	
-    	        } 
-    	            
-	            System.out.println("Customer age is ".concat(String.valueOf(age)));
-	            //update temp input
+    	        } //end while age check
+
+	            //append result
 	            custDetail += age + ",";
-    	            
+    	        //display result    
+	            System.out.println("Customer age is ".concat(String.valueOf(age)));   	            
     	      
-    	        
     	       	//Prompt the user for income input 
     	        income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000): ", 1));
     	        
@@ -134,15 +135,13 @@ public class MainList {
     	        	System.out.println("You did not enter anything. Please Try again.");
     	        	income = Double.parseDouble(processInput.getNum("Enter income (i.e. 30000):  ", 1));
     	        	
-    	        } 
-    	        
-	            System.out.println("Customer income is ".concat(String.valueOf(income)));
+    	        }//end while income check 
+
 	            //update temp input
     	        custDetail += income + ",";
-        	        
+    	        //display result
+	            System.out.println("Customer income is ".concat(String.valueOf(income)));    
 
-    	        
-    	        
     	       	//Prompt the user for credit score input 
     	        cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 800): ", 1));
     	        
@@ -152,15 +151,14 @@ public class MainList {
     	        	System.out.println("You did not enter anything. Please Try again.");
     	        	cScore = Integer.parseInt(processInput.getNum("Enter credit score (i.e. 750):  ", 1));
     	        	
-    	        }  
-	            System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));
+    	        }//end credit score check  
+    	        
 	            //update temp input
 	            custDetail += cScore;
-    	            
+    	        //display result
+	            System.out.println("Customer credit score is ".concat(String.valueOf(cScore)));   
 
-    	        
-    	        
-    	        
+	            //add customer
     	        if (admList.addCustomer(custDetail) == true) {
     	        	System.out.println("Success");
 
