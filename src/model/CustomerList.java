@@ -21,7 +21,7 @@ public class CustomerList {
     UserInputHandler process = new UserInputHandler();
 
     //instantiate the the customer list object    
-    ArrayList<String> customerList = new ArrayList<String>();
+    ArrayList<Customer> customerList = new ArrayList<Customer>();
     
 	//add item to customer object
 	public boolean addCustomer(String custDetail) {
@@ -40,7 +40,7 @@ public class CustomerList {
 		customer.cScore	= Integer.parseInt(temp[5]);
 		
 		//add customer info to customer list
-		customerList.add(customer.toString());
+		customerList.add(customer);
 		
 		//if the list exists and is bigger than 0
 		if (customerList.size() > 0) {
@@ -78,12 +78,13 @@ public class CustomerList {
 	public Boolean showCustomers() {
 
 		boolean stat		= false;
-	    //instantiate the the customer object    
-	    Customer customer = new Customer();
+
 		if (customerList.size() > 0) {
 			for (int custID = 0; custID < customerList.size(); custID++) {
-				System.out.println(customerList.get(custID).toString());
-				customerList.toString();
+//				System.out.println(customerList.get(custID).getId());
+				System.out.println(customerList.get(custID).getFName()
+						+ " " + customerList.get(custID).getLName());
+				
 			}	
 			
 			stat = true;
@@ -92,7 +93,7 @@ public class CustomerList {
 		return stat;
 	}//end method
 	
-	public CustomerList(ArrayList<String> customerList) {
+	public CustomerList(ArrayList<Customer> customerList) {
 		super();
 		
 	}

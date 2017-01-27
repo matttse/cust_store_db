@@ -11,7 +11,22 @@ public class Customer extends Person{
 	protected String id;
 	protected double income;
 	protected int cScore;
+	
+	/**
+	 * @return the id
+	 */
+	protected String getId() {
+		return id;
+	}
 
+
+	/**
+	 * @param id the id to set
+	 */
+	protected void setId(String id) {
+		this.id = id;
+	}
+	
 	/**
 	 * @return the income
 	 */
