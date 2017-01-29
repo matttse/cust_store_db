@@ -44,6 +44,7 @@ public class MainMenu {
 			int select = Integer.parseInt(option);
 
 			// Valid options
+			if (select > 7 || select < 1) {
 
 				System.out.print("Please select a valid option");
 				// Update age
