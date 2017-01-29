@@ -45,21 +45,27 @@ public class CustomerList {
 		String temp[] = custDetail.split(",");
 		// instantiate the the customer object
 		Customer customer = new Customer();
-		// set customer info to customer object
-		customer.id = temp[0];
-		customer.FName = temp[1];
-		customer.LName = temp[2];
-		customer.Age = Integer.parseInt(temp[3]);
-		customer.income = Double.parseDouble(temp[4]);
-		customer.cScore = Integer.parseInt(temp[5]);
+		
+		if (mappedCustomers.containsKey(Integer.parseInt(temp[0])) == false) {
+			// set customer info to customer object
+			customer.id = temp[0];
+			customer.FName = temp[1];
+			customer.LName = temp[2];
+			customer.Age = Integer.parseInt(temp[3]);
+			customer.income = Double.parseDouble(temp[4]);
+			customer.cScore = Integer.parseInt(temp[5]);
 
-		//add key value pair to customer map for searching
-		mappedCustomers.put(Integer.parseInt(temp[0]), customer);
+			//add key value pair to customer map for searching
+			mappedCustomers.put(Integer.parseInt(temp[0]), customer);
 
-		// if the list exists and is bigger than 0
-		if (mappedCustomers.size() > 0) {
-			stat = true;
+			// if the list exists and is bigger than 0
+			if (mappedCustomers.size() > 0) {
+				stat = true;
+			}
+		} else {
+			System.out.println("Customer already exists, please enter an unique ID.");
 		}
+
 
 		return stat;
 
