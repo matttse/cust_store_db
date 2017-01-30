@@ -1,0 +1,31 @@
+Project Name: Customer Info Database Extension
+Course Number: CS342
+Assignment Number: 1
+Author: Matthew Tse
+Due Date: 01/31/2017
+Submission Date: 01/31/2017
+
+Class MainMenu
+- public class MainMenu from package view
+	The MainMenu object that displays options to the user interface
+Specification
+
+Class CustomerList
+
+Specification
+
+Class Customer
+
+Specification
+
+Class Person
+
+Specification
+
+Class UserInputHandler
+
+Specification
+
+Class InputValidator
+
+Specification
