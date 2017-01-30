@@ -21,7 +21,10 @@ public class InputValidator {
 	 * invalid characters and informs them of errors. Also calls method
 	 * confirm()
 	 * 
-	 * @Parameters: String input, int flag (i.e. 0 = String)
+	 * @Parameters:
+	 * 		{vc} input
+	 * 		{i4} flag
+	 * 		{i4} typeFlag (i.e. 0 = String)
 	 * 
 	 * @Additionl Comments: All input must be passed as a string. Flags: 0 =
 	 * String 1 = int 2 = double
@@ -180,8 +183,7 @@ public class InputValidator {
 			validInput = false;
 			break;
 		}
-		// System.out.print("validateNum, validInput = ");
-		// System.out.println(validInput);
+
 		return validInput;
 
 	}// end method

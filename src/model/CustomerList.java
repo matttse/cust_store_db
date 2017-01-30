@@ -46,6 +46,7 @@ public class CustomerList {
 		// instantiate the the customer object
 		Customer customer = new Customer();
 		
+		//check if key exists in map already
 		if (mappedCustomers.containsKey(Integer.parseInt(temp[0])) == false) {
 			// set customer info to customer object
 			customer.id = temp[0];
