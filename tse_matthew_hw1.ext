@@ -7,25 +7,236 @@ Submission Date: 01/31/2017
 
 Class MainMenu
 - public class MainMenu from package view
-	The MainMenu object that displays options to the user interface
+		The MainMenu object that displays options to the user interface
 Specification
+- main
+		public static void main(String[] args)
+		instantiates UserInputHandler
+		instantiates CustomerList
+	Returns:
+		null
 
 Class CustomerList
+- public class CustomerList from package model
+		a CustomerList object persists Customer objects in a TreeMap object
 
 Specification
+- addCustomer
+		public boolean addCustomer(String custDetail)
+		add customer to customerList
+	Parameters:
+		custDetail - a comma delimited string of Customer Details
+	Returns:
+		The status of whether or not the customer details have been added to
+		the mappedCustomer TreeMap object
+- removeCustomer
+		public boolean removeCustomer(int custID)
+		removes customer from customerList
+	Parameters:
+		custID - the unique ID of the customer
+	Returns:
+		The status whether the customer was removed from customerList
+- getCustomerListSize
+		public boolean getCustomerListSize
+		gets the size of the customerList
+	Parameters:
+		null
+	Returns:
+		The status whether customerList object has a size
+- showCustomers
+		public void showCustomers()
+		displays all customers to the screen via system
+	Parameters:
+		null
+	Returns:
+		null
+- updateCustomerInfo
+		public boolean updateCustomerInfo(int custID, int optionFlag, String newVal)
+		update info for customer based on user choice
+	Parameters:
+		custID - the unique ID of the customer
+		optionFlag - user directed options for income, credit score, and age
+		newVal - the new value to set to the accessed customer
+	Returns:
+		The status whether the customer in customerList appropriate field was updated
+- searchCustDb
+		public Customer searchCustDb(int custID)
+	Parameters:
+		custID - the unique ID of the customer
+	Returns:
+		the Customer object from the unique ID
 
 Class Customer
+- public class Customer extends Person from package model
+		A Customer object that contains the properties of a customer
+		and Person object
 
 Specification
+- Constructor for the Customer
+		getters and setters
+- getId
+	gets the Id of Customer object
+	Parameters:
+		null
+	Returns:
+		id
+- setId
+	sets the Id of Customer object
+	Parameters:
+		null
+	Returns:
+		id
+- getIncome
+	gets the income of Customer object
+	Parameters:
+		null
+	Returns:
+		income
+- setIncome
+	sets the income of Customer object
+	Parameters:
+		null
+	Returns:
+		income
+- getcScore
+	gets the credit score of Customer object
+	Parameters:
+		null
+	Returns:
+		cScore
+- setcScore-
+	sets the credit score of Customer object
+	Parameters:
+		null
+	Returns:
+		cScore
 
 Class Person
+- public class Person from package model
+		an abstract class Person object extended by the Customer object
 
 Specification
+- Constructor for the Person
+		getters and setters
+- getFName
+	gets the first name of Person object
+	Parameters:
+		null
+	Returns:
+		FName
+- setFName
+	sets the first name of Person object
+	Parameters:
+		null
+	Returns:
+		FName
+- getLName
+	gets the Last name of Person object
+	Parameters:
+		null
+	Returns:
+		LName
+- setLName
+	sets the Last name of Person object
+	Parameters:
+		null
+	Returns:
+		LName
+- getAge
+	gets the age of Person object
+	Parameters:
+		null
+	Returns:
+		age
+- setAge
+	sets the age of Person object
+	Parameters:
+		null
+	Returns:
+		age
 
+Class InputValidator 
+- public class InputValidator from package dhl
+		The InputValidator object that validates user input
+		
+Specification
+- public boolean validate(String userInput, int flag, int typeFlag)
+		Validates any user input based on type, checks for
+		invalid characters and informs them of errors. Also calls method
+		confirm()
+		
+	Parameters:
+		input - the user input
+		flag - String or Number validation
+		typeFlag - determines type of number
+	Returns:
+		validInput boolean depending returned values
+- public boolean validateString(String userInput)
+		validates string input
+	Parameters:
+		userInput - input from the user
+	Returns:
+		validInput boolean 
+		
+- public boolean validateNum(String userInput, int flag)
+		validates number input
+	Parameters:
+		userInput - input from the user
+		flag - type of number to check
+	Returns:
+		validInput boolean 
+- public class ErrorGetter
+		ErrorGetter object that returns user input when invalid along with
+		standard message
+	Parameters:
+		null
+	Returns:
+		partialInput message and user input
+		
 Class UserInputHandler
+- public class UserInputHandler from package dhl
+		UserInputHandler object that handles user input from keyboard
 
 Specification
-
-Class InputValidator
-
-Specification
+- Constructor for UserInputHandler
+		instantiates Scanner object
+	Precondition:
+		System.in
+- public String getString(String inputString)
+		gets string value
+	Parameters:
+		inputString - string of input
+	Returns:
+		outputText value string
+- public String getNum(String input, int typeFlag)
+		gets numerical values
+	Parameters:
+		input - user input
+		typeFlag - type of number
+	Returns:
+		outputText value string
+- public String processOutput(String processInput)
+		removes whitespace from a string
+	Parameters:
+		processInput - input value
+	Returns:
+		processOutput string value
+- public boolean getMatchedItems(string list, String compareValue)
+		compares a value to a comma separated list
+	Parameters:
+		list - customer details as a list
+		compareValue - the value to compare to list
+	Returns:
+		validVal boolean
+- public boolean confirmInput()
+		prompts the user to confirm input with up to 3 tries
+	Parameters:
+		null
+	Returns:
+		valid confirmation of user input
+- public void exit(int status)
+		standard system exit
+	Parameters:
+		status - exit status
+	Returns:
+		null

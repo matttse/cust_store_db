@@ -3,7 +3,6 @@ package model;
 /**
  * @ClassName CustomerList
  * @Author Matthew Tse
- * @SuperClass CustomerList
  * @Method addCustomer
  * @Method getCustomerListSize
  * @Method showCustomers
@@ -108,6 +107,7 @@ public class CustomerList {
 	 * @Parameters:
 	 * 		{i4} custID
 	 * 		{i4} optionFlag
+	 * 		{vc} newVal
 	 * 
 	 * 
 	 * @Additional Comments:source
@@ -197,7 +197,7 @@ public class CustomerList {
 	 * @Return: boolean success/fail
 	 * 
 	 */
-	public Boolean getCustomerListSize() {
+	public boolean getCustomerListSize() {
 		boolean stat = false;
 		if (mappedCustomers.size() > 0) {
 			stat = true;
@@ -208,11 +208,6 @@ public class CustomerList {
 		return stat;
 
 	}//end getCustomerListSize method
-	
-	public CustomerList() {
-		super();
-		
-	}
 
 	/*
 	 * @Name: searchCustDb

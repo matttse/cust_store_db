@@ -13,7 +13,7 @@ import dhl.UserInputHandler;
 public class MainMenu {
 
 	// Main method
-	public static void main(String[] args) {
+	public static void main() {
 
 		// initialize and declare global vars
 		int completeFlag = 0;

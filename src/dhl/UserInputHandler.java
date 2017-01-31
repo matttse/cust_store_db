@@ -155,22 +155,22 @@ public class UserInputHandler {
 	 */
 	public boolean getMatchedItems(String list, String compareValue) {
 		// default to return match
-		boolean validOrder = false;
-		String menu[] = list.split("-");
+		boolean validVal = false;
+		String custDetails[] = list.split(",");
 
-		for (int idx = 0; idx < menu.length; idx++) {
+		for (int idx = 0; idx < custDetails.length; idx++) {
 
-			if (menu[idx].equals(compareValue)) {
-				validOrder = true;
+			if (custDetails[idx].equals(compareValue)) {
+				validVal = true;
 				break;
 			} else {
-				validOrder = false;
+				validVal = false;
 
 			}
 
 		}
 
-		return validOrder;
+		return validVal;
 	}// end method
 
 	/*
