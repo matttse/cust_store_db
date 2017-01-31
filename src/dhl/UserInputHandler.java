@@ -25,6 +25,53 @@ public class UserInputHandler {
 		keyboardInput = new Scanner(System.in);
 
 	}
+	
+	/*
+	 * @Name: getAlphaNum
+	 * 
+	 * @Function/Purpose: gets an alphanumeric value
+	 * 
+	 * @Parameters: {vc} input
+	 * 
+	 * @Additional Comments:
+	 * 
+	 * @Return: {vc} output text
+	 * 
+	 */
+	public String getAlphaNum(String inputString) {
+		boolean valid = false;
+		int tryCnt = 0;
+		InputValidator validateInput = new InputValidator();
+		System.out.println(inputString);
+
+		while (valid != true && tryCnt < 3) {
+
+			String input = keyboardInput.nextLine();
+
+			// iterate over input checking to make sure each char is Aa-Zz-0-9
+			valid = validateInput.validate(input, 2, 0);
+
+			if (valid == true) {
+
+				outputText = processOutput(input);
+
+			} else {
+
+				System.out.println("Please try again.");
+				tryCnt++;
+
+			}
+
+		} // end while
+
+		if (valid != true) {
+			// fail case
+			outputText = "You have tried too many times. Please start over.";
+		}
+
+		return outputText;
+
+	}// end method
 
 	/*
 	 * @Name: getString

@@ -23,7 +23,7 @@ public class CustomerList {
 	UserInputHandler process = new UserInputHandler();
 
 	// instantiate the the customer list object	
-	TreeMap<Integer, Customer> mappedCustomers = new TreeMap<Integer, Customer>();
+	TreeMap<String, Customer> mappedCustomers = new TreeMap<String, Customer>();
 	
 	/*
 	 * @Name: addCustomer
@@ -46,7 +46,7 @@ public class CustomerList {
 		Customer customer = new Customer();
 		
 		//check if key exists in map already
-		if (mappedCustomers.containsKey(Integer.parseInt(temp[0])) == false) {
+		if (mappedCustomers.containsKey(temp[0]) == false) {
 			// set customer info to customer object
 			customer.id = temp[0];
 			customer.FName = temp[1];
@@ -56,7 +56,7 @@ public class CustomerList {
 			customer.cScore = Integer.parseInt(temp[5]);
 
 			//add key value pair to customer map for searching
-			mappedCustomers.put(Integer.parseInt(temp[0]), customer);
+			mappedCustomers.put(temp[0], customer);
 
 			// if the list exists and is bigger than 0
 			if (mappedCustomers.size() > 0) {
@@ -83,13 +83,18 @@ public class CustomerList {
 	 * @Return: boolean status
 	 * 
 	 */
-	public boolean removeCustomer(int custID) {
+	public boolean removeCustomer(String custID) {
 		//initialize status
 		boolean stat = false;
 		//remove customer
 		try {
-			mappedCustomers.remove(custID);
-			stat = true;
+			if (mappedCustomers.containsKey(custID)) {
+				mappedCustomers.remove(custID);
+				stat = true;				
+			} else {
+				stat = false;
+			}
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			
@@ -115,7 +120,7 @@ public class CustomerList {
 	 * @Return: boolean status
 	 * 
 	 */
-	public boolean updateCustomerInfo(int custID, int optionFlag, String newVal) {
+	public boolean updateCustomerInfo(String custID, int optionFlag, String newVal) {
 		boolean stat = false;
 		try {
 			Customer customer = mappedCustomers.get(custID);
@@ -167,12 +172,12 @@ public class CustomerList {
 	 */
 	public void showCustomers() {
 
-		Set<Entry<Integer, Customer>> set = mappedCustomers.entrySet();
+		Set<Entry<String, Customer>> set = mappedCustomers.entrySet();
 		
-		Iterator<Entry<Integer, Customer>> idx = set.iterator();
+		Iterator<Entry<String, Customer>> idx = set.iterator();
 		
 		while(idx.hasNext()) {
-			Map.Entry<Integer, Customer> custId = (Map.Entry<Integer, Customer>)idx.next();
+			Map.Entry<String, Customer> custId = (Map.Entry<String, Customer>)idx.next();
 			Customer customer = (Customer) custId.getValue();
 			System.out.print("\n");
 			System.out.println("Customer id: " + customer.getId());
@@ -221,7 +226,7 @@ public class CustomerList {
 	 * @Return: object Customer
 	 * 
 	 */
-	private Customer searchCustDb(int custID) {
+	private Customer searchCustDb(String custID) {
 		// instantiate the the customer object
 		Customer customer = new Customer();
 		

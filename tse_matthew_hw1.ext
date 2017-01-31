@@ -5,9 +5,20 @@ Author: Matthew Tse
 Due Date: 01/31/2017
 Submission Date: 01/31/2017
 
-Class MainMenu
-- public class MainMenu from package view
-		The MainMenu object that displays options to the user interface
+source:
+package view
+	CustomerManagement
+package model
+	Customer
+	CustomerList
+	Person
+package dhl
+	InputValidator
+	UserInputHandler
+	
+Class CustomerManagement
+- public class CustomerManagement from package view
+		The CustomerManagement object that displays options to the user interface
 Specification
 - main
 		public static void main(String[] args)
@@ -18,7 +29,9 @@ Specification
 
 Class CustomerList
 - public class CustomerList from package model
-		a CustomerList object persists Customer objects in a TreeMap object
+		a CustomerList object persists Customer objects in a TreeMap object.
+		TreeMap object leveraging the customer ID as the key and a Customer object
+		as the value.
 
 Specification
 - addCustomer
@@ -30,7 +43,7 @@ Specification
 		The status of whether or not the customer details have been added to
 		the mappedCustomer TreeMap object
 - removeCustomer
-		public boolean removeCustomer(int custID)
+		public boolean removeCustomer(string custID)
 		removes customer from customerList
 	Parameters:
 		custID - the unique ID of the customer
@@ -51,7 +64,7 @@ Specification
 	Returns:
 		null
 - updateCustomerInfo
-		public boolean updateCustomerInfo(int custID, int optionFlag, String newVal)
+		public boolean updateCustomerInfo(string custID, int optionFlag, String newVal)
 		update info for customer based on user choice
 	Parameters:
 		custID - the unique ID of the customer
@@ -60,7 +73,7 @@ Specification
 	Returns:
 		The status whether the customer in customerList appropriate field was updated
 - searchCustDb
-		public Customer searchCustDb(int custID)
+		public Customer searchCustDb(string custID)
 	Parameters:
 		custID - the unique ID of the customer
 	Returns:
@@ -202,6 +215,12 @@ Specification
 		instantiates Scanner object
 	Precondition:
 		System.in
+- public String getAlphaNum(String inputString)
+		gets alpha numeric string
+	Parameters:
+		inputString - string of input
+	Returns:
+		outputText value
 - public String getString(String inputString)
 		gets string value
 	Parameters:

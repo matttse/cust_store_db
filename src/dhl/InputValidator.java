@@ -43,11 +43,79 @@ public class InputValidator {
 		case 1:
 			validInput = validateNum(userInput, typeFlag);
 			break;
-
+		
+		case 2:
+			validInput = validAlphaNum(userInput);
+			break;
+			
 		default:
 
 			validInput = false;
 			break;
+
+		}
+
+		return validInput;
+
+	}// end method
+
+	/*
+	 * @Name: validateString
+	 * 
+	 * @Function/Purpose: Validates string input
+	 * 
+	 * @Parameters: {vc} String input
+	 * 
+	 * @Additionl Comments: called from validate method
+	 * 
+	 * @Return true/false based on valid 
+	 */
+	public boolean validAlphaNum(String userInput) {
+		boolean validInput = false;
+		String badChars = "";
+		String processInput = "";
+
+		for (int charCnt = 0; userInput.length() > charCnt; charCnt++) {
+
+			// iterate over each char in input
+			char charac = userInput.charAt(charCnt);
+
+			// look for valid alphabetical values (a-z/A-Z/0-9)
+			if ((charac > 64 && charac < 91) || (charac > 96 && charac < 123) || (charac > 47 && charac < 58)) {
+
+				processInput += userInput.substring(charCnt, charCnt + 1);
+				// Valid case
+				validInput = true;
+
+			} else if (charac == 32) {
+
+				processInput = userInput.replaceAll("\\s", "");
+
+			} else {
+
+				// Invalid char a-z/A-Z
+				badChars += userInput.substring(charCnt, charCnt + 1);
+				validInput = false;
+
+			}
+
+		} // end for loop
+
+		if (badChars != "") {
+
+			// instantiate getErrors to get bad string if necessary
+			ErrorGetter getErrors = new ErrorGetter();
+
+			validationErrors = getErrors.getErrors(badChars);
+
+			System.out.println(validationErrors);
+
+			validInput = false;
+
+		} else {
+
+			// return true
+			validInput = true;
 
 		}
 

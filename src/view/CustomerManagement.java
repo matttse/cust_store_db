@@ -4,16 +4,16 @@ import model.CustomerList;
 import dhl.UserInputHandler;
 
 /**
- * @ClassName MainList
+ * @ClassName CustomerManagement
  * @author Matthew Tse
  * @Method main
  * @Method exit
  *
  */
-public class MainMenu {
+public class CustomerManagement {
 
 	// Main method
-	public static void main() {
+	public static void main(String[] args) {
 
 		// initialize and declare global vars
 		int completeFlag = 0;
@@ -49,15 +49,16 @@ public class MainMenu {
 				System.out.print("Please select a valid option");
 				// Update age
 			} else if (select == 3) {
-				int custId;
+				String custId;
 				int age;
 
 				// prompt user for customer id
-				custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+				custId = processInput.getAlphaNum("Enter customer id to update: ");
+						//Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
 
-				while (custId == 0) {
+				while (custId.length() == 0) {
 					System.out.println("You did not enter anything. Please Try again.");
-					custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+					custId = processInput.getAlphaNum("Enter customer id to update: ");
 
 				} // end while
 
@@ -83,15 +84,15 @@ public class MainMenu {
 
 				// Update income
 			} else if (select == 4) {
-				int custId;
+				String custId;
 				Double income;
 
 				// prompt user for customer id
-				custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+				custId = processInput.getAlphaNum("Enter customer id to update: ");
 
-				while (custId == 0) {
+				while (custId.length() == 0) {
 					System.out.println("You did not enter anything. Please Try again.");
-					custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+					custId = processInput.getAlphaNum("Enter customer id to update: ");
 
 				} // end while
 
@@ -116,15 +117,15 @@ public class MainMenu {
 				}
 				// Update Credit Score
 			} else if (select == 5) {
-				int custId;
+				String custId;
 				int cScore;
 
 				// prompt user for customer id
-				custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+				custId = processInput.getAlphaNum("Enter customer id to update: ");
 
-				while (custId == 0) {
+				while (custId.length() == 0) {
 					System.out.println("You did not enter anything. Please Try again.");
-					custId = Integer.parseInt(processInput.getNum("Enter customer id to update: ", 1));
+					custId = processInput.getAlphaNum("Enter customer id to update: ");
 
 				} // end while
 
@@ -150,13 +151,13 @@ public class MainMenu {
 
 				// Remove customer
 			} else if (select == 2) {
-				int custId;
+				String custId;
 				// prompt user for customer id
-				custId = Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
+				custId = processInput.getAlphaNum("Enter customer id to remove: ");
 
-				while (custId == 0) {
+				while (custId.length() == 0) {
 					System.out.println("You did not enter anything. Please Try again.");
-					custId = Integer.parseInt(processInput.getNum("Enter customer id to remove: ", 1));
+					custId = processInput.getAlphaNum("Enter customer id to remove: ");
 
 				} // end while
 
@@ -182,13 +183,12 @@ public class MainMenu {
 				int lNameLength = 0;
 
 				// Prompt the user for customer id input
-				custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
-
+				custId = processInput.getAlphaNum("Enter customer id: ");
 				// check against blank entries
 				while (custId.length() == 0) {
 
 					System.out.println("You did not enter anything. Please Try again.");
-					custId = String.valueOf(processInput.getNum("Enter customer id: ", 1));
+					custId = processInput.getAlphaNum("Enter customer id: ");
 
 				} // end while custID length check
 					// append result
